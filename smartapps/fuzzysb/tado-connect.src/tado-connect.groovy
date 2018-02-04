@@ -784,6 +784,10 @@ private parseResponse(resp,childDevice) {
         log.debug("Read tadoMode: " + autoOperation)
         childDevice?.sendEvent(name: 'tadoMode', value: autoOperation)
 
+        def heatingPower = resp.data.activityDataPoints.heatingPower.percentage
+        log.debug("Read heatingPower: " + heatingPower)
+        childDevice?.sendEvent(name: 'heatingPower', value: heatingPower)
+                
 		if (resp.data.setting.power == "ON"){
 			childDevice?.sendEvent(name: 'thermostatMode', value: "heat")
 			childDevice?.sendEvent(name: 'thermostatOperatingState', value: "heating")

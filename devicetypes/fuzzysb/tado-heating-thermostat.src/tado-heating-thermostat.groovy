@@ -48,6 +48,8 @@ metadata {
 		capability "Polling"
 		capability "Refresh"
 		attribute "tadoMode", "string"
+        attribute "heatingPower", "number"
+        
 		command "temperatureUp"
     command "temperatureDown"
     command "heatingSetpointUp"
@@ -132,8 +134,11 @@ tiles(scale: 2){
 		standardTile("endManualControl", "device.thermostat", width: 2, height: 1, canChangeIcon: false, canChangeBackground: true, decoration: "flat") {
             state("default", label:'', action:"endManualControl", icon:"https://raw.githubusercontent.com/fuzzysb/Tado/master/devicetypes/fuzzysb/tado-heating-thermostat.src/Images/endManual.png")
 		}
+	    valueTile("heatingPower", "device.heatingPower", width: 2, height: 1, decoration: "flat") {
+			state "heatingPower", label: 'Heating Power\r\n${currentValue}', unit:"%"
+		}
 		main "thermostat"
-		details (["thermostat","thermostatMode","outsidetemperature","heatingSetpoint","refresh","heatingSetpointUp","heatingSetpointDown","tadoMode","emergencyHeat","heat","Off","endManualControl"])
+		details (["thermostat","thermostatMode","outsidetemperature","heatingSetpoint","refresh","heatingSetpointUp","heatingSetpointDown","tadoMode","emergencyHeat","heat","Off","endManualControl","heatingPower"])
 	}
 }
 
